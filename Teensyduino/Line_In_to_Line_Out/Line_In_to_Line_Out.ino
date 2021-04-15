@@ -41,6 +41,35 @@ void setup() {
   delay(1000);
 }
 
+elapsedMillis msecs;
+
 void loop() {
-  // do nothing
+    delay(10); // wait for library to parse WAV info (maybe?)
+  if (msecs > 40) {                                               //This code is from the second cited program comments, it should find peaks and do a graphical waveform.
+    if (peak1.available() && peak2.available()) {
+      msecs = 0;
+      float leftNumber = peak1.read();
+      float rightNumber = peak2.read();
+      int leftPeak = leftNumber * 30.0;
+      int rightPeak = rightNumber * 30.0;
+      int count;
+      for (count=0; count < 30-leftPeak; count++) {
+        Serial.print(" ");
+      }
+      while (count++ < 30) {
+        Serial.print("<");
+      }
+      Serial.print("||");
+      for (count=0; count < rightPeak; count++) {
+        Serial.print(">");
+      }
+      while (count++ < 30) {
+        Serial.print(" ");
+      }
+      Serial.print(leftNumber);
+      Serial.print(", ");
+      Serial.print(rightNumber);
+      Serial.println();
+    }
+  }
 }

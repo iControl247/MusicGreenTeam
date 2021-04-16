@@ -46,9 +46,15 @@ void setup() {
   sgtl5000_1.volume(0.5);                       //Range is 0 to 1 but 0.8 is maximum undistorted output for a full scale signal, we may have to play around with this a bit
   sgtl5000_1.inputSelect(AUDIO_INPUT_LINEIN);   //It was very important to change this line so that the audio is received from the LineIn versus the microphone as it was by default
   // sgtl5000_1.micGain(36);                    //This line shouldn't do anything because we are using LineIn
-  amp1.gain(39.0);                              //Calibration for left channel not being loud enough (this also makes hella noice)
+  amp1.gain(6.0);                              //Calibration for left channel not being loud enough (this also makes hella noice)
   //delay(1000);
 }
+
+// Delays:
+// 6 for Andrew's phone
+// 8 for Nate's phone
+// 39 for USB-C dongle
+
 
 elapsedMillis msecs;
 
